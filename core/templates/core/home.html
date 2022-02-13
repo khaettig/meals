@@ -1,14 +1,8 @@
-<!doctype html>
-<html lang="en">
+{% extends "core/root.html" %}
 
-<head>
-  <meta charset="utf-8">
-  <title>Login</title>
-</head>
+{% block title %}Home{% endblock %}
 
-<body>
-  <div id="logged_in_as">Logged in as {{ request.user.username }}</div>
-  <a id="logout" href="{% url "core:logout" %}">Logout</a>
-</body>
-
-</html>
+{% block body %}
+<div id="logged_in_as">Logged in as {{ request.user.username }}</div>
+<a id="logout" href="{% url "core:logout" %}">Logout</a>
+{% endblock %}

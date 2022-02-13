@@ -1,17 +1,11 @@
-<!doctype html>
-<html lang="en">
+{% extends "core/root.html" %}
 
-<head>
-  <meta charset="utf-8">
-  <title>Login</title>
-</head>
+{% block title %}Login{% endblock %}
 
-<body>
-  <form method="POST"> 
-    {{ form.as_p }}
-    {% csrf_token %}
-    <input type="submit" name="submit">
-  </form>
-</body>
-
-</html>
+{% block body %}
+<form method="POST"> 
+  {{ form.as_p }}
+  {% csrf_token %}
+  <input type="submit" name="submit">
+</form>
+{% endblock %}
