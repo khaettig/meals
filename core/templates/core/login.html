@@ -3,9 +3,11 @@
 {% block title %}Login{% endblock %}
 
 {% block body %}
-<form method="POST"> 
-  {{ form.as_p }}
-  {% csrf_token %}
-  <input type="submit" name="submit">
-</form>
+<div class="d-flex flex column min-vh-100 justify-content-center align-items-center">
+  <form method="POST"> 
+    {{ form.as_p }}
+    {% csrf_token %}
+    <input type="submit" name="submit">
+  </form>
+</div>
 {% endblock %}
