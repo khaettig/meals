@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Login</title>
+</head>
+
+<body>
+  <div id="logged_in_as">Logged in as {{ request.user.username }}</div>
+  <a id="logout" href="{% url "core:logout" %}">Logout</a>
+</body>
+
+</html>

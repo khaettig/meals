@@ -27,3 +27,10 @@ class AuthenticationTest(FunctionalTest):
         login_page.password.send_keys("correctpassword")
         login_page.password.send_keys(Keys.ENTER)
         self.assert_page_active(HomePage)
+
+        # User can see his/her name in the header
+        self.assertEqual(home_page.logged_in_as.text, "Logged in as testuser")
+
+        # User can log out and is redirected to login page
+        home_page.logout.click()
+        self.assert_page_active(LoginPage)
