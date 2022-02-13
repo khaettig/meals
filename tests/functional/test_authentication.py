@@ -1,21 +1,29 @@
 from selenium.webdriver.common.keys import Keys
 
-from .pages import LoginPage
+from core.factories import UserFactory
+
+from .pages import HomePage, LoginPage
 from .utils import FunctionalTest
 
 
 class AuthenticationTest(FunctionalTest):
     def test_login_and_logout(self):
-        login_page = self.get_page(LoginPage)
-        login_page.open()
-        self.assertEqual("Login", login_page.title)
+        UserFactory(username="testuser", password="correctpassword")
 
+        home_page = self.get_page(HomePage)
+        login_page = self.get_page(LoginPage)
+
+        # Unauthenticated user gets redirected to login page
+        home_page.open()
+        self.assert_page_active(LoginPage)
+
+        # Wrong password doesn't log in user
         login_page.username.send_keys("testuser")
         login_page.password.send_keys("wrongpassword")
         login_page.password.send_keys(Keys.ENTER)
+        self.assert_page_active(LoginPage)
 
-        self.assertEqual("Login", login_page.title)
-
-        login_page.username.send_keys("testuser")
+        # Correct password does log in user
         login_page.password.send_keys("correctpassword")
         login_page.password.send_keys(Keys.ENTER)
+        self.assert_page_active(HomePage)

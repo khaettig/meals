@@ -3,6 +3,8 @@ from django.contrib.staticfiles.testing import LiveServerTestCase
 from selenium.webdriver import Chrome
 from selenium.webdriver.chrome.options import Options
 
+from .http import remove_get_parameters
+
 
 class FunctionalTest(LiveServerTestCase):
     def setUp(self):
@@ -27,3 +29,6 @@ class FunctionalTest(LiveServerTestCase):
 
     def get_page(self, Class):
         return Class(self.browser, self.live_server_url)
+
+    def assert_page_active(self, Class):
+        return self.assertEqual(remove_get_parameters(self.current_url), Class.url)
