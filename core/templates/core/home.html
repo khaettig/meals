@@ -1,8 +1,5 @@
-{% extends "core/root.html" %}
+{% extends "core/with_navbar.html" %}
 
 {% block title %}Home{% endblock %}
 
-{% block body %}
-<div id="logged_in_as">Logged in as {{ request.user.username }}</div>
-<a id="logout" href="{% url "core:logout" %}">Logout</a>
-{% endblock %}
+{% block content %}{% endblock %}

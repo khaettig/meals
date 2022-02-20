@@ -1,0 +1,35 @@
+:root {
+  --navbar-height: 60px;
+  --color-dark: #232323;
+}
+
+body.no-scroll {
+  height: 100vh;
+}
+
+.navbar {
+  height: var(--navbar-height);
+  background-color: var(--color-dark);
+}
+
+.navbar, .navbar *, .navbar *:hover {
+  color: white;
+}
+
+.login label {
+  height: 100%;
+  margin: 0px 10px 0px 0px;
+}
+
+.login input {
+  width: 100%;
+}
+
+#content {
+  height: calc(100vh - var(--navbar-height));
+  display: flex;
+}
+
+.bg-meals-dark {
+  background-color: var(--color-dark);
+}

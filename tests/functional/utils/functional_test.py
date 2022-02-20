@@ -1,12 +1,12 @@
 from decouple import config
-from django.contrib.staticfiles.testing import LiveServerTestCase
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium.webdriver import Chrome
 from selenium.webdriver.chrome.options import Options
 
 from .http import remove_get_parameters
 
 
-class FunctionalTest(LiveServerTestCase):
+class FunctionalTest(StaticLiveServerTestCase):
     def setUp(self):
         super().setUp()
 

@@ -29,7 +29,7 @@ class AuthenticationTest(FunctionalTest):
         self.assert_page_active(HomePage)
 
         # User can see his/her name in the header
-        self.assertEqual(home_page.logged_in_as.text, "Logged in as testuser")
+        self.assertIn("Logged in as testuser", home_page.body.text)
 
         # User can log out and is redirected to login page
         home_page.logout.click()
