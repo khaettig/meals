@@ -15,12 +15,16 @@ body.no-scroll {
   color: white;
 }
 
-.login label {
+.table-form th {
+  vertical-align: top;
+}
+
+.table-form label {
   height: 100%;
   margin: 0px 10px 0px 0px;
 }
 
-.login input {
+.table-form input {
   width: 100%;
 }
 
@@ -42,6 +46,13 @@ body.no-scroll {
 
   display: flex;
   flex-direction: row-reverse;
+}
+
+.content-middle {
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
 }
 
 .bg-meals-dark {
