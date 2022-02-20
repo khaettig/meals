@@ -10,9 +10,6 @@ body.no-scroll {
 .navbar {
   height: var(--navbar-height);
   background-color: var(--color-dark);
-}
-
-.navbar, .navbar *, .navbar *:hover {
   color: white;
 }
 

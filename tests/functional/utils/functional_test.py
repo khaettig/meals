@@ -2,7 +2,11 @@ from decouple import config
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium.webdriver import Chrome
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.keys import Keys
 
+from core.factories import UserFactory
+
+from ..pages import LoginPage
 from .http import remove_get_parameters
 
 
@@ -14,6 +18,7 @@ class FunctionalTest(StaticLiveServerTestCase):
 
         if not config("SHOW", default=False, cast=bool):
             chrome_options.add_argument("--headless")
+            chrome_options.add_argument("--window-size=1920,1080")
 
         self.browser = Chrome(options=chrome_options)
 
@@ -21,6 +26,15 @@ class FunctionalTest(StaticLiveServerTestCase):
         super().tearDown()
 
         self.browser.quit()
+
+    def login(self):
+        UserFactory(username="testuser", password="correctpassword")
+
+        login_page = self.get_page(LoginPage)
+        login_page.open()
+        login_page.username.send_keys("testuser")
+        login_page.password.send_keys("correctpassword")
+        login_page.password.send_keys(Keys.ENTER)
 
     @property
     def current_url(self):

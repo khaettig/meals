@@ -16,3 +16,6 @@ class Page:
     @property
     def body(self):
         return self.browser.find_element(By.TAG_NAME, "body")
+
+    def link(self, text):
+        return self.browser.find_element(By.LINK_TEXT, text)

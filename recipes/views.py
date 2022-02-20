@@ -1,7 +1,13 @@
-from django.http import HttpResponse
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import render
 from django.views.generic import View
 
 
-class AddRecipeView(View):
+class RecipesView(LoginRequiredMixin, View):
     def get(self, request):
-        return HttpResponse("<title>Add a recipe</title>")
+        return render(request, "recipes/recipes.html")
+
+
+class AddRecipeView(LoginRequiredMixin, View):
+    def get(self, request):
+        return render(request, "recipes/add_recipe.html")

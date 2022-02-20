@@ -1,0 +1,7 @@
+{% extends "core/with_navbar.html" %}
+
+{% block title %}Recipes{% endblock %}
+
+{% block content %}
+<a id="add_recipe" href="{% url "recipes:add_recipe" %}">Add a recipe</a>
+{% endblock %}
