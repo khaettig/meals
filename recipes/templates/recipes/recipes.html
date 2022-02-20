@@ -3,5 +3,48 @@
 {% block title %}Recipes{% endblock %}
 
 {% block content %}
-<a id="add_recipe" href="{% url "recipes:add_recipe" %}">Add a recipe</a>
+<div class="content-block">
+  <div class="content-options">
+    <div>
+      <i class="fa-solid fa-circle-plus text-success icon"></i>
+      <a id="add_recipe" class="with-icon text-secondary" href="{% url "recipes:add_recipe" %}">Add a recipe</a>
+    </div>
+  </div>
+</div>
+<div class="content-block">
+    <h3>Your Recipes</h3>
+</div>
+<div class="content-block">
+  <table class="listing-table">
+    <tr>
+      <th>Name</th>
+      <th style="width: 300px;">Tags</th>
+      <th class="text-center" style="width: 100px;">Actions</th>
+    </tr>
+    <tr>
+      <td>Pfannkuchen</td>
+      <td>Awesome</td>
+      <td class="text-center">
+        <i class="fa-solid fa-wrench icon"></i>
+        <i class="fa-solid fa-trash-can icon"></i>
+      </td>
+    </tr>
+    <tr>
+      <td>Pfannkuchen</td>
+      <td>Awesome</td>
+      <td class="text-center">
+        <i class="fa-solid fa-wrench icon"></i>
+        <i class="fa-solid fa-trash-can icon"></i>
+      </td>
+    </tr>
+    <tr>
+      <td>Pfannkuchen</td>
+      <td>Awesome</td>
+      <td class="text-center">
+        <i class="fa-solid fa-wrench icon"></i>
+        <i class="fa-solid fa-trash-can icon"></i>
+      </td>
+    </tr>
+  </table>
+</div>
 {% endblock %}
