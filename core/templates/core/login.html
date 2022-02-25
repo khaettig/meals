@@ -6,16 +6,16 @@
 
 {% block body %}
 <div class="container d-flex h-100">
-  <div class="table-form card mx-auto my-auto">
+  <div class="form-table card mx-auto my-auto">
     <div class="card-body">
       <div class="card-title text-center">
         <h3>Please log in</h3>
       </div>
       <div class="mx-auto">
-        <form method="post">
+        <form method="POST">
           {% csrf_token %} 
           <table class="m-3">
-          {{ form.as_table }}
+            {% include "core/form.html" %}
           </table>
           <div class="w-100 text-center">
             <button type="submit" class="w-25 btn btn-primary text-center">Login</button>

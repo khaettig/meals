@@ -2,6 +2,7 @@ from decouple import config
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium.webdriver import Chrome
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 
 from core.factories import UserFactory
@@ -46,3 +47,6 @@ class FunctionalTest(StaticLiveServerTestCase):
 
     def assert_page_active(self, Class):
         return self.assertEqual(remove_get_parameters(self.current_url), Class.url)
+
+    def assert_page_has_html5_invalid_field(self):
+        return self.browser.find_element(By.CSS_SELECTOR, ":required, :invalid")

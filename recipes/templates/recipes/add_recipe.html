@@ -8,34 +8,10 @@
 </div>
 <div class="content-block">
   <div class="content-middle">
-    <form>
-      <table class="table-form">
-        <tbody>
-          <tr>
-            <th>
-              <label for="id_name">Name:</label>
-            </th>
-            <td>
-              <input id="id_name">
-            </td>
-          </tr>
-          <tr>
-            <th>
-              <label for="id_description">Description:</label>
-            </th>
-            <td>
-              <textarea id="id_description" cols=80 rows=10></textarea>
-            </td>
-          </tr>
-          <tr>
-            <th>
-              <label for="id_url">Url:</label>
-            </th>
-            <td>
-              <input id="id_url">
-            </td>
-          </tr>
-        </tbody>
+    <form method="POST">
+      {% csrf_token %}
+      <table class="form-table">
+        {% include "core/form.html" %}
       </table>
       <div class="w-100 pt-2 text-right">
         <button id="submit_recipe" type="submit" class="btn btn-primary">Add Recipe</button>
