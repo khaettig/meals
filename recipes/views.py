@@ -4,11 +4,17 @@ from django.shortcuts import redirect, render
 from django.views.generic import View
 
 from recipes.forms import AddRecipeForm
+from recipes.models import Recipe
+from recipes.services import create_recipe
 
 
 class RecipesView(LoginRequiredMixin, View):
     def get(self, request):
-        return render(request, "recipes/recipes.html")
+        return render(
+            request,
+            "recipes/recipes.html",
+            context={"recipes": Recipe.objects.all()},
+        )
 
 
 class AddRecipeView(LoginRequiredMixin, View):
@@ -19,6 +25,7 @@ class AddRecipeView(LoginRequiredMixin, View):
         form = AddRecipeForm(request.POST)
 
         if form.is_valid():
+            create_recipe(**form.cleaned_data, actor=request.user)
             messages.add_message(
                 request, messages.INFO, "Your recipe was saved!", extra_tags="success"
             )

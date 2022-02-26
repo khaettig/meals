@@ -21,30 +21,16 @@
       <th style="width: 300px;">Tags</th>
       <th class="text-center" style="width: 100px;">Actions</th>
     </tr>
+    {% for recipe in recipes %}
     <tr>
-      <td>Pfannkuchen</td>
-      <td>Awesome</td>
+      <td><a class="text-dark" href="{{ recipe.url }}" target="_blank" rel="noopener noreferrer">{{ recipe.name }}</a></td>
+      <td></td>
       <td class="text-center">
-        <i class="fa-solid fa-wrench icon"></i>
-        <i class="fa-solid fa-trash-can icon"></i>
+        <!-- <i class="fa-solid fa-wrench icon"></i> -->
+        <!-- <i class="fa-solid fa-trash-can icon"></i> -->
       </td>
     </tr>
-    <tr>
-      <td>Pfannkuchen</td>
-      <td>Awesome</td>
-      <td class="text-center">
-        <i class="fa-solid fa-wrench icon"></i>
-        <i class="fa-solid fa-trash-can icon"></i>
-      </td>
-    </tr>
-    <tr>
-      <td>Pfannkuchen</td>
-      <td>Awesome</td>
-      <td class="text-center">
-        <i class="fa-solid fa-wrench icon"></i>
-        <i class="fa-solid fa-trash-can icon"></i>
-      </td>
-    </tr>
+    {% endfor %}
   </table>
 </div>
 {% endblock %}

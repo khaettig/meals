@@ -22,7 +22,11 @@ class AddRecipeTest(FunctionalTest):
         self.assert_page_has_html5_invalid_field()
 
         add_recipe_page.name.send_keys("Macaroni and Cheese")
-        add_recipe_page.description.send_keys("Cook macaroni. Add cheese.")
+        add_recipe_page.description.send_keys("Boil the pasta, drain. Add cheese.")
         add_recipe_page.submit.click()
         self.assert_page_active(AddRecipePage)
         self.assertIn("Your recipe was saved!", add_recipe_page.body.text)
+
+        add_recipe_page.link("Recipes").click()
+        self.assertEqual("Recipes", recipes_page.title)
+        self.assertIn("Macaroni and Cheese", recipes_page.body.text)
