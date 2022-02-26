@@ -1,5 +1,4 @@
 :root {
-  --navbar-height: 60px;
   --color-dark: #232323;
   --color-light: #DFDFDF;
   --color-very-light: #EAEAEA;
@@ -12,7 +11,6 @@ body.no-scroll {
 
 
 .navbar {
-  height: var(--navbar-height);
   background-color: var(--color-dark);
   color: white;
 }
@@ -39,7 +37,6 @@ body.no-scroll {
 }
 
 #content {
-  height: calc(100vh - var(--navbar-height));
   display: flex;
   flex-direction: column;
 }
