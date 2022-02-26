@@ -21,8 +21,12 @@ INSTALLED_APPS = [
     "recipes",
 ]
 
-MIDDLEWARE = [
-    "django.middleware.security.SecurityMiddleware",
+MIDDLEWARE = ["django.middleware.security.SecurityMiddleware"]
+
+if config("USE_WHITENOISE", cast=bool, default=False):
+    MIDDLEWARE += ["whitenoise.middleware.WhiteNoiseMiddleware"]
+
+MIDDLEWARE += [
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -51,12 +55,29 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "meals.wsgi.application"
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+DATABASE_TYPE = config("DATABASE_TYPE", "sqlite3")
+
+if DATABASE_TYPE == "sqlite3":
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
     }
-}
+elif DATABASE_TYPE == "postgresql":
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql_psycopg2",
+            "HOST": config("DATABASE_HOST"),
+            "PORT": config("DATABASE_PORT"),
+            "NAME": config("DATABASE_NAME"),
+            "USER": config("DATABASE_USER"),
+            "PASSWORD": config("DATABASE_PASSWORD"),
+        }
+    }
+else:
+    print(f"Invalid DATABASE_TYPE: {DATABASE_TYPE}")
+    exit(1)
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -79,8 +100,33 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = "static/"
+STATIC_ROOT = "static/"
 LOGIN_URL = "/login/"
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/login/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "standard": {"format": "%(asctime)s [%(levelname)s] %(message)s"},
+    },
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+            "formatter": "standard",
+        },
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["console"],
+            "level": "INFO",
+        },
+        "gunicorn": {
+            "handlers": ["console"],
+            "level": "DEBUG",
+        },
+    },
+}
