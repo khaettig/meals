@@ -10,5 +10,5 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN pip install -r requirements/common.txt -r requirements/deployment.txt
 RUN python3 manage.py collectstatic
 
-ENV PYTHONUNBUFFERED=True
-CMD ["gunicorn", "-b", ":80", "meals.wsgi"]
+EXPOSE 8000
+CMD ["gunicorn", "-b", ":8000", "meals.wsgi"]
