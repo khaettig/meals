@@ -6,22 +6,15 @@
 
 {% block body %}
 <div class="container d-flex h-100">
-  <div class="form-table card mx-auto my-auto">
+  <div class="card mx-auto my-auto">
     <div class="card-body">
       <div class="card-title text-center">
         <h3>Please log in</h3>
       </div>
-      <div class="mx-auto">
-        <form method="POST">
-          {% csrf_token %} 
-          <table class="m-3">
-            {% include "core/form.html" %}
-          </table>
-          <div class="w-100 text-center">
-            <button type="submit" class="w-25 btn btn-primary text-center">Login</button>
-          </div>
-        </form>
-      </div>
+      <form method="POST" class="one-column">
+        {% include "core/form.html" %}
+        <button type="submit" class="btn btn-primary">Login</button>
+      </form>
     </div>
   </div>
 </div>

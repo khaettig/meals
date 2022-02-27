@@ -1,15 +1,15 @@
+{% csrf_token %}
+
 {% for field in form.visible_fields %}
-<tr>
-  <th>{{ field.label_tag }}</th>
-  <th>{{ field }}</th>
-</tr>
+  {{ field.label_tag }}
+  {{ field }}
   {% for error in field.errors %}
-  <tr><th></th><th class="field-error">{{ error }}</th></tr>
+  <div class="field-error">{{ error }}</div>
   {% endfor %}
 {% endfor %}
 
 {% for error in form.non_field_errors %}
-  <tr><th></th><th class="non-field-error">{{ error }}</th></tr>
+  <div class="non-field-error">{{ error }}</div>
 {% endfor %}
 
 {% for field in form.hidden_fields %}

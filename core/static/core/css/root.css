@@ -9,43 +9,23 @@ body.no-scroll {
   height: 100vh;
 }
 
-
 .navbar {
   background-color: var(--color-dark);
   color: white;
 }
 
-.form-table th {
-  vertical-align: top;
-}
-
-.form-table label {
-  height: 100%;
-  margin: 0px 10px 0px 0px;
-}
-
-.form-table input {
-  width: 100%;
-}
-
-.form-table textarea {
-  resize: none;
-}
-
-.field-error, .non-field-error {
-  color: red;
-}
-
 #content {
   display: flex;
   flex-direction: column;
+
+  margin-bottom: 20px;
 }
 
 .content-block {
   padding: 15px 20px 0px;
 
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 }
 
 .content-options {
@@ -55,11 +35,30 @@ body.no-scroll {
   flex-direction: row-reverse;
 }
 
-.content-middle {
-  width: 100%;
+.content-filler {
+  flex: 1 1 auto;
+}
+
+.content-main {
+  flex: 0 1 800px;
 
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+}
+
+form.one-column {
+  display: flex;
+  flex-direction: column;
+}
+
+form.one-column label {
+  font-weight: bold;
+
+  margin-top: 10px;
+}
+
+form.one-column button {
+  margin-top: 20px;
 }
 
 .bg-meals-dark {
@@ -71,6 +70,11 @@ i.icon {
   line-height: inherit;
   padding-right: 5px;
 }
+
+.field-error, .non-field-error {
+  color: red;
+}
+
 
 .listing-table {
   width: 100%;
