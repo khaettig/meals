@@ -62,8 +62,6 @@ form.one-column button {
 }
 
 .listing {
-  color: white;
-
   width: 100%;
 
   display: flex;
@@ -73,11 +71,9 @@ form.one-column button {
 .listing>div {
   background-color: var(--color-light);
 
-  padding: 5px 10px;
-
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  flex-wrap: wrap;
 }
 
 .listing>div:nth-child(even) {
@@ -85,12 +81,23 @@ form.one-column button {
 }
 
 .listing>div.header {
+  color: white;
   font-weight: bold;
   background-color: var(--color-dark);
 }
 
-.listing .name {
-  flex: 0 0 auto;
+.listing>div>div { 
+  padding: 5px 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.listing .field-title {
+  flex: 1 1 400px;
+}
+
+.listing .field-small {
+  flex: 0 1 100px;
 }
 
 .message.success {
