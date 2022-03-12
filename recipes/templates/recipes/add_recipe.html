@@ -4,11 +4,16 @@
 
 {% block content %}
 <div class="content-block">
-    <h3>Add a Recipe</h3>
+  <div class="content-options">
+    <div>
+      <a class="with-icon text-secondary" href="{% url "recipes:recipes" %}">Back</a>
+    </div>
+  </div>
 </div>
 <div class="content-block">
   <div class="content-filler"></div>
     <form method="POST" class="content-main one-column">
+      <h3>Add a Recipe</h3>
       {% include "core/form.html" %}
       <button id="submit_recipe" type="submit" class="btn btn-primary">Add Recipe</button>
     </form>

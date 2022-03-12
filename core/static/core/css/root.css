@@ -51,7 +51,8 @@ form.one-column {
   flex-direction: column;
 }
 
-form.one-column label {
+form.one-column label,
+.detail.one-column label {
   font-weight: bold;
 
   margin-top: 10px;
@@ -59,6 +60,10 @@ form.one-column label {
 
 form.one-column button {
   margin-top: 20px;
+}
+
+.detail.one-column > div {
+  margin: 5px 10px 20px;
 }
 
 .login {

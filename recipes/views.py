@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import View
 
 from recipes.forms import AddRecipeForm
@@ -14,6 +14,15 @@ class RecipesView(LoginRequiredMixin, View):
             request,
             "recipes/recipes.html",
             context={"recipes": Recipe.objects.all()},
+        )
+
+
+class RecipeView(LoginRequiredMixin, View):
+    def get(self, request, recipe_id):
+        return render(
+            request,
+            "recipes/recipe.html",
+            context={"recipe": get_object_or_404(Recipe, id=recipe_id)},
         )
 
 

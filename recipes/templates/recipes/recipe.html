@@ -1,0 +1,32 @@
+{% extends "core/with_navbar.html" %}
+
+{% block title %}{{ recipe.name }}{% endblock %}
+
+{% block content %}
+<div class="content-block">
+  <div class="content-options">
+    <div>
+      <a class="with-icon text-secondary" href="{% url "recipes:recipes" %}">Back</a>
+    </div>
+  </div>
+</div>
+<div class="content-block">
+  <div class="content-filler"></div>
+  <div class="content-main one-column detail">
+    <h3>{{ recipe.name }}</h3>
+    <label>Description:</label>
+    <div class="description">
+      {% if recipe.description %}
+        {{ recipe.description }}
+      {% else %}
+        No description
+      {% endif %}
+    </div>
+    <label>Url:</label>
+    <div class="url">
+      <a href="{{ recipe.url }}" target="_blank" rel="noopener noreferrer">{{ recipe.url }}</a>
+    </div>
+  </div>
+  <div class="content-filler"></div>
+</div>
+{% endblock %}

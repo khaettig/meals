@@ -45,8 +45,10 @@ class FunctionalTest(StaticLiveServerTestCase):
     def get_page(self, Class):
         return Class(self.browser, self.live_server_url)
 
-    def assert_page_active(self, Class):
-        return self.assertEqual(remove_get_parameters(self.current_url), Class.url)
+    def assert_page_active(self, Class, **kwargs):
+        return self.assertEqual(
+            remove_get_parameters(self.current_url), Class.url.format(**kwargs)
+        )
 
     def assert_page_has_html5_invalid_field(self):
         return self.browser.find_element(By.CSS_SELECTOR, ":required, :invalid")

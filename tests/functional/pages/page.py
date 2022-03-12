@@ -6,8 +6,8 @@ class Page:
         self.browser = browser
         self.live_server_url = live_server_url
 
-    def open(self):
-        self.browser.get(self.live_server_url + self.url)
+    def open(self, **kwargs):
+        self.browser.get(self.live_server_url + self.url.format(**kwargs))
 
     @property
     def title(self):

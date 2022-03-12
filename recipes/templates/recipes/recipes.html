@@ -21,9 +21,10 @@
       <div class="field-small">Creator</div>
     </div>
     {% for recipe in recipes %}
-    <div class="body">
-      <div class="field-title"><a class="text-dark" href="{{ recipe.url }}" target="_blank" rel="noopener noreferrer">{{ recipe.name }}</a></div>
-      <div class="field-small">{{ recipe.creator }}</div>
+    <div class="recipe body">
+      <div class="id d-none">{{ recipe.id }}</div>
+      <div class="name field-title"><a class="text-dark" href="{% url "recipes:recipe" recipe.id %}">{{ recipe.name }}</a></div>
+      <div class="creator field-small">{{ recipe.creator }}</div>
     </div>
     {% endfor %}
   </div>
