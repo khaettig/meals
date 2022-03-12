@@ -61,6 +61,13 @@ form.one-column button {
   margin-top: 20px;
 }
 
+.login {
+  width: 300px;
+
+  padding: 10px;
+  margin: auto;
+}
+
 .listing {
   width: 100%;
 
