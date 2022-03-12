@@ -28,3 +28,4 @@ class AddRecipeTest(TestCase):
         self.assertEqual(recipe.name, "Sushi")
         self.assertEqual(recipe.description, "Order it.")
         self.assertEqual(recipe.url, "sushi.com")
+        self.assertEqual(recipe.creator, actor)

@@ -23,7 +23,7 @@
     {% for recipe in recipes %}
     <div class="body">
       <div class="field-title"><a class="text-dark" href="{{ recipe.url }}" target="_blank" rel="noopener noreferrer">{{ recipe.name }}</a></div>
-      <div class="field-small">{{ recipe.created_by }}</div>
+      <div class="field-small">{{ recipe.creator }}</div>
     </div>
     {% endfor %}
   </div>

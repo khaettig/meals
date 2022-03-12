@@ -7,8 +7,6 @@ class Recipe(models.Model):
     description = models.TextField(null=True)
     url = models.URLField(null=True)
 
-    created_by = models.ForeignKey(
-        get_user_model(), on_delete=models.SET_NULL, null=True
-    )
+    creator = models.ForeignKey(get_user_model(), on_delete=models.SET_NULL, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
