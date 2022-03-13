@@ -2,14 +2,7 @@ from django.shortcuts import reverse
 from django.test import TestCase
 
 from core.factories import UserFactory
-
-
-def invalid_data():
-    return {}
-
-
-def valid_data():
-    return {"name": "Name"}
+from recipes.tests import data
 
 
 class AddRecipeViewTest(TestCase):
@@ -28,13 +21,15 @@ class AddRecipeViewTest(TestCase):
     def test_invalid_post_renders_page_again(self):
         UserFactory(logged_in_to=self.client)
 
-        response = self.client.post(reverse("recipes:add_recipe"), invalid_data())
+        response = self.client.post(
+            reverse("recipes:add_recipe"), data.invalid_recipe()
+        )
 
         self.assertTemplateUsed(response, "recipes/add_recipe.html")
 
     def test_valid_post_redirects(self):
         UserFactory(logged_in_to=self.client)
 
-        response = self.client.post(reverse("recipes:add_recipe"), valid_data())
+        response = self.client.post(reverse("recipes:add_recipe"), data.valid_recipe())
 
         self.assertEqual(response.status_code, 302)

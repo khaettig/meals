@@ -2,7 +2,7 @@ from django.test import TestCase
 
 from core.factories import UserFactory
 from recipes.models import Recipe
-from recipes.services import create_recipe
+from recipes.services import RecipeAlreadyExists, create_recipe
 
 
 class AddRecipeTest(TestCase):
@@ -29,3 +29,10 @@ class AddRecipeTest(TestCase):
         self.assertEqual(recipe.description, "Order it.")
         self.assertEqual(recipe.url, "sushi.com")
         self.assertEqual(recipe.creator, actor)
+
+    def test_creating_recipe_with_same_name_raises_already_exists(self):
+        actor = UserFactory()
+        create_recipe(name="Pizza", actor=actor)
+
+        with self.assertRaises(RecipeAlreadyExists):
+            create_recipe(name="Pizza", actor=actor)

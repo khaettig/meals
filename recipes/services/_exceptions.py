@@ -1,0 +1,2 @@
+class RecipeAlreadyExists(Exception):
+    pass

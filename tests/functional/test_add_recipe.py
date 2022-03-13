@@ -29,7 +29,7 @@ class AddRecipeTest(FunctionalTest):
         add_recipe_page.description.send_keys(RECIPE_DESCRIPTION)
         add_recipe_page.submit.click()
         self.assert_page_active(AddRecipePage)
-        self.assertIn("Your recipe was saved!", add_recipe_page.body.text)
+        self.assertIn("Your recipe was created!", add_recipe_page.body.text)
 
         add_recipe_page.link("Recipes").click()
         self.assertEqual("Recipes", recipes_page.title)

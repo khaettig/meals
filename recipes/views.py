@@ -1,8 +1,9 @@
-from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import View
 
+from core.utils import get_fields
+from recipes import messages
 from recipes.forms import RecipeForm
 from recipes.models import Recipe
 from recipes.services import create_recipe, update_recipe
@@ -34,11 +35,10 @@ class AddRecipeView(LoginRequiredMixin, View):
         form = RecipeForm(request.POST)
 
         if form.is_valid():
-            create_recipe(**form.cleaned_data, actor=request.user)
-            messages.add_message(
-                request, messages.INFO, "Your recipe was saved!", extra_tags="success"
-            )
-            return redirect("recipes:add_recipe")
+            with form.handles_specified_exceptions():
+                create_recipe(**form.cleaned_data, actor=request.user)
+                messages.add_recipe_created_message(request)
+                return redirect("recipes:add_recipe")
         return self._render(request, form=form)
 
     def _render(self, request, *, form):
@@ -46,35 +46,28 @@ class AddRecipeView(LoginRequiredMixin, View):
 
 
 class EditRecipeView(LoginRequiredMixin, View):
-    def get(self, request, recipe_id):
-        recipe = get_object_or_404(Recipe, id=recipe_id)
-        return self._render(
-            request,
-            form=RecipeForm(
-                initial={
-                    "name": recipe.name,
-                    "description": recipe.description,
-                    "url": recipe.url,
-                }
-            ),
-            recipe=recipe,
-        )
+    def dispatch(self, request, recipe_id):
+        self.recipe = get_object_or_404(Recipe, id=recipe_id)
+        return super().dispatch(request)
 
-    def post(self, request, recipe_id):
-        recipe = get_object_or_404(Recipe, id=recipe_id)
+    def get(self, request):
+        return self._render(request, form=RecipeForm(initial=get_fields(self.recipe)))
+
+    def post(self, request):
         form = RecipeForm(request.POST)
 
         if form.is_valid():
-            update_recipe(recipe=recipe, **form.cleaned_data, actor=request.user)
-            messages.add_message(
-                request, messages.INFO, "Your recipe was saved!", extra_tags="success"
-            )
-            return redirect("recipes:edit_recipe", recipe_id=recipe_id)
-        return self._render(request, form=form, recipe=recipe)
+            with form.handles_specified_exceptions():
+                update_recipe(
+                    recipe=self.recipe, **form.cleaned_data, actor=request.user
+                )
+                messages.add_recipe_saved_message(request)
+                return redirect("recipes:edit_recipe", recipe_id=self.recipe.id)
+        return self._render(request, form=form)
 
-    def _render(self, request, *, form, recipe):
+    def _render(self, request, *, form):
         return render(
             request,
             "recipes/edit_recipe.html",
-            context={"form": form, "recipe": recipe},
+            context={"form": form, "recipe": self.recipe},
         )
