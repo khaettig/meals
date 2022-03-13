@@ -42,3 +42,5 @@ class AddRecipeTest(FunctionalTest):
         self.assertEqual(RECIPE_NAME, recipe_page.title)
         self.assertEqual(RECIPE_NAME, recipe_page.content_title.text)
         self.assertEqual(RECIPE_DESCRIPTION, recipe_page.description.text)
+
+        recipe_page.edit.click()

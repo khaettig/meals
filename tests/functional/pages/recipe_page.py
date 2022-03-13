@@ -13,3 +13,7 @@ class RecipePage(Page):
     @property
     def description(self):
         return self.browser.find_element(By.CLASS_NAME, "description")
+
+    @property
+    def edit(self):
+        return self.browser.find_element(By.LINK_TEXT, "Edit")

@@ -1,22 +1,22 @@
 {% extends "core/with_navbar.html" %}
 
-{% block title %}Add a Recipe{% endblock %}
+{% block title %}Edit Recipe{% endblock %}
 
 {% block content %}
 <div class="content-block">
   <div class="content-options">
     <div>
       <i class="fa-solid fa-xmark text-secondary icon"></i>
-      <a class="text-secondary" href="{% url "recipes:recipes" %}">Back</a>
+      <a class="text-secondary" href="{% url "recipes:recipe" recipe.id %}">Back</a>
     </div>
   </div>
 </div>
 <div class="content-block">
   <div class="content-filler"></div>
     <form method="POST" class="content-main one-column">
-      <h3>Add a Recipe</h3>
+      <h3>Edit Recipe</h3>
       {% include "core/form.html" %}
-      <button id="submit_recipe" type="submit" class="btn btn-primary">Add Recipe</button>
+      <button id="submit_recipe" type="submit" class="btn btn-primary">Save</button>
     </form>
   <div class="content-filler"></div>
 </div>
