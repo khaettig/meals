@@ -71,6 +71,10 @@ form.one-column button {
   overflow-wrap: anywhere;
 }
 
+.one-column h3 {
+  overflow-wrap: anywhere;
+}
+
 .login {
   width: 300px;
 
