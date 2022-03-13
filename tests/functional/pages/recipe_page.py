@@ -15,5 +15,9 @@ class RecipePage(Page):
         return self.browser.find_element(By.CLASS_NAME, "description")
 
     @property
+    def url_(self):
+        return self.browser.find_element(By.CLASS_NAME, "url")
+
+    @property
     def edit(self):
-        return self.browser.find_element(By.LINK_TEXT, "Edit")
+        return self.browser.find_element(By.ID, "edit_recipe")
