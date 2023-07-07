@@ -1,0 +1,24 @@
+-   model: recipes.category
+    pk: 0
+    fields:
+        name: Other
+-   model: recipes.category
+    pk: 1
+    fields:
+        name: Rice
+-   model: recipes.category
+    pk: 2
+    fields:
+        name: Grain
+-   model: recipes.category
+    pk: 3
+    fields:
+        name: Pasta
+-   model: recipes.category
+    pk: 4
+    fields:
+        name: Ramen
+-   model: recipes.category
+    pk: 5
+    fields:
+        name: Dough

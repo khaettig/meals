@@ -15,6 +15,9 @@ class RecipesPage(Page):
     @property
     def recipes(self):
         return [
-            get_table_fields(recipe, {"name": ".name", "name__url": ".name a"})
+            get_table_fields(
+                recipe,
+                {"name": ".name", "category": ".category", "name__url": ".name a"},
+            )
             for recipe in self.browser.find_elements(By.CLASS_NAME, "recipe")
         ]

@@ -14,7 +14,7 @@ class RecipesView(LoginRequiredMixin, View):
         return render(
             request,
             "recipes/recipes.html",
-            context={"recipes": Recipe.objects.all()},
+            context={"recipes": Recipe.objects.all().select_related("category")},
         )
 
 

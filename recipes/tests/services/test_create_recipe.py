@@ -6,6 +6,8 @@ from recipes.services import RecipeAlreadyExists, create_recipe
 
 
 class AddRecipeTest(TestCase):
+    fixtures = ["fixtures/category.yaml"]
+
     def test_with_minimal_information(self):
         actor = UserFactory()
 
@@ -20,6 +22,7 @@ class AddRecipeTest(TestCase):
         create_recipe(
             name="Sushi",
             description="Order it.",
+            category_id=3,
             url="sushi.com",
             actor=actor,
         )
@@ -27,6 +30,7 @@ class AddRecipeTest(TestCase):
         recipe = Recipe.objects.get()
         self.assertEqual(recipe.name, "Sushi")
         self.assertEqual(recipe.description, "Order it.")
+        self.assertEqual(recipe.category.name, "Pasta")
         self.assertEqual(recipe.url, "sushi.com")
         self.assertEqual(recipe.creator, actor)
 

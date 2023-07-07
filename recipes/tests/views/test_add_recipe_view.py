@@ -6,6 +6,8 @@ from recipes.tests import data
 
 
 class AddRecipeViewTest(TestCase):
+    fixtures = ["fixtures/category.yaml"]
+
     def test_redirects_anonymous_users(self):
         response = self.client.get(reverse("recipes:add_recipe"))
 

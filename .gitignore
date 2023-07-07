@@ -6,5 +6,6 @@ db.sqlite3
 
 .venv
 .localrc
+.nvimrc
 .env
 .compile_suite
