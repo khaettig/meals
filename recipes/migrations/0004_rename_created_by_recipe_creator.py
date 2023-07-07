@@ -4,7 +4,6 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("recipes", "0003_recipe_created_at_recipe_created_by_and_more"),
     ]
