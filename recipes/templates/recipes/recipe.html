@@ -27,10 +27,12 @@
         No description
       {% endif %}
     </div>
+    {% if url %}
     <label>Url:</label>
     <div class="url">
-      <a href="{{ recipe.url }}" target="_blank" rel="noopener noreferrer">{{ recipe.url }}</a>
+        <a href="{{ recipe.url }}" target="_blank" rel="noopener noreferrer">{{ recipe.url }}</a>
     </div>
+    {% endif %}
   </div>
   <div class="content-filler"></div>
 </div>
