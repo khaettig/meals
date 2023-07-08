@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import View
 
-from core.utils import get_fields
+from core.utils import get_fields, get_ordering
 from recipes import messages
 from recipes.forms import RecipeForm
 from recipes.models import Recipe
@@ -11,10 +11,18 @@ from recipes.services import create_recipe, update_recipe
 
 class RecipesView(LoginRequiredMixin, View):
     def get(self, request):
+        ordering = get_ordering(
+            data=request.GET,
+            options=("name", "category", "creator"),
+            default="name",
+        )
+
+        recipes = Recipe.objects.all().select_related("category").order_by(ordering)
+
         return render(
             request,
             "recipes/recipes.html",
-            context={"recipes": Recipe.objects.all().select_related("category")},
+            context={"recipes": recipes},
         )
 
 
