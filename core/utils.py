@@ -7,10 +7,11 @@ def get_fields(instance):
     }
 
 
-def get_ordering(*, data, options, default):
-    key = data.get("ordering", default)
+def get_ordering_field(*, key, options):
     as_dict = {
-        prefix + option: prefix + option for prefix in ("", "-") for option in options
+        prefix + key: prefix + field
+        for prefix in ("", "-")
+        for key, field in options.items()
     }
 
     if key not in as_dict:
