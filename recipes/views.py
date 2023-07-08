@@ -21,8 +21,11 @@ class RecipesView(LoginRequiredMixin, View):
 
         return render(
             request,
-            "recipes/recipes.html",
-            context={"recipes": recipes},
+            "recipes/recipes_table.html" if request.htmx else "recipes/recipes.html",
+            context={
+                "recipes": recipes,
+                "ordering": ordering,
+            },
         )
 
 
