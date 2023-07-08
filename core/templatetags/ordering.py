@@ -15,5 +15,5 @@ def ordering_icon(context, name):
     if context["ordering"].replace("-", "") != name:
         return ""
     if context["ordering"].startswith("-"):
-        return mark_safe(' <i class="fa-solid fa-caret-up"></i>')
-    return mark_safe(' <i class="fa-solid fa-caret-down"></i>')
+        return mark_safe(' <i class="fa-solid fa-caret-down"></i>')
+    return mark_safe(' <i class="fa-solid fa-caret-up"></i>')
