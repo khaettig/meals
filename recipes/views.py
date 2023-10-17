@@ -12,7 +12,7 @@ from recipes.services import create_recipe, update_recipe
 
 class RecipesView(LoginRequiredMixin, View):
     def get(self, request):
-        filter = request.GET.get("filter", "")
+        filter = request.GET.get("filter", "").lower()
         ordering = request.GET.get("ordering", "name")
         ordering_field = get_ordering_field(
             key=ordering,
@@ -26,9 +26,9 @@ class RecipesView(LoginRequiredMixin, View):
         recipes = (
             Recipe.objects.select_related("creator", "category")
             .filter(
-                Q(name__contains=filter)
-                | Q(creator__username__contains=filter)
-                | Q(category__name__contains=filter)
+                Q(name__icontains=filter)
+                | Q(creator__username__icontains=filter)
+                | Q(category__name__icontains=filter)
             )
             .order_by(ordering_field)
         )
