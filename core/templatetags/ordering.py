@@ -7,7 +7,7 @@ register = template.Library()
 @register.simple_tag(takes_context=True)
 def hx_ordering(context, name):
     prefix = "-" if context["ordering"] == name else ""
-    return f"hx-get=?ordering={prefix}{name}"
+    return f"hx-get=?ordering={prefix}{name} hx-include=[name='filter']"
 
 
 @register.simple_tag(takes_context=True)

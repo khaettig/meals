@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import View
 
@@ -11,6 +12,7 @@ from recipes.services import create_recipe, update_recipe
 
 class RecipesView(LoginRequiredMixin, View):
     def get(self, request):
+        filter = request.GET.get("filter", "")
         ordering = request.GET.get("ordering", "name")
         ordering_field = get_ordering_field(
             key=ordering,
@@ -22,7 +24,13 @@ class RecipesView(LoginRequiredMixin, View):
         )
 
         recipes = (
-            Recipe.objects.all().select_related("category").order_by(ordering_field)
+            Recipe.objects.select_related("creator", "category")
+            .filter(
+                Q(name__contains=filter)
+                | Q(creator__username__contains=filter)
+                | Q(category__name__contains=filter)
+            )
+            .order_by(ordering_field)
         )
 
         return render(

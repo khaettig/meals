@@ -1,6 +1,7 @@
 {% load ordering %}
 
 <div id="recipes-table" class="content-block" hx-target="#recipes-table" hx-swap="outerHTML">
+  <input name="ordering" value="{{ ordering }}" hidden>
   <div class="listing">
     <div class="header">
       <div class="field-title sortable" {% hx_ordering "name" %}>Name{% ordering_icon "name" %}</div>

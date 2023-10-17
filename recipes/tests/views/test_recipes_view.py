@@ -27,3 +27,13 @@ class RecipesViewTest(TestCase):
             list(response.context["recipes"]),
             [recipes[2], recipes[1], recipes[0]],
         )
+
+    def test_can_filter_by_name(self):
+        UserFactory(logged_in_to=self.client)
+        recipes = RecipeFactory.create_batch(3)
+
+        response = self.client.get(reverse("recipes:recipes") + "?filter=0")
+        self.assertEqual(
+            list(response.context["recipes"]),
+            [recipes[0]],
+        )
