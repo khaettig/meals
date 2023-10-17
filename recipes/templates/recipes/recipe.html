@@ -6,12 +6,14 @@
 <div class="content-block">
   <div class="content-options">
     <div>
-      <i class="fa-solid fa-xmark text-secondary icon"></i>
-      <a class="text-secondary" href="{% url "recipes:recipes" %}">Back</a>
+      <a class="text-secondary" href="{% url "recipes:recipes" %}">
+        <i class="fa-solid fa-xmark icon"></i>Back
+      </a>
     </div>
     <div>
-      <i class="fa-solid fa-pen-to-square text-secondary icon"></i>
-      <a id="edit_recipe" class="with-icon text-secondary" href="{% url "recipes:edit_recipe" recipe.id %}">Edit</a>
+      <a id="edit_recipe" class="text-secondary" href="{% url "recipes:edit_recipe" recipe.id %}">
+        <i class="fa-solid fa-pen-to-square icon"></i>Edit
+      </a>
     </div>
   </div>
 </div>
